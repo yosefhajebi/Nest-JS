@@ -11,14 +11,18 @@ export class OrderController {
   //create(@Body() createOrderDto: CreateOrderDto) {
   //  return this.orderService.create(createOrderDto);
   //}
-  @Post(':customerId')
-  create(
-    @Param('customerId', ParseIntPipe)
-    customerId: number,
-  ) 
-  {
-	  //return 'test';
-     return this.orderService.createOrder(customerId);
+  //@Post(':customerId')
+  //create(
+  //  @Param('customerId', ParseIntPipe)
+  //  customerId: number,
+  //) 
+  //{
+	//  //return 'test';
+  //   return this.orderService.createOrder(customerId);
+  //}
+  @Post()
+  create(@Body() dto: CreateOrderDto) {
+    return this.orderService.create(dto);
   }
   @Get()
   findAll() {

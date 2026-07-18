@@ -11,24 +11,37 @@ export class OrderService {
     private readonly customerService: CustomerService,
 	private readonly orderRepository: OrderRepository,
   ) {}
-  createOrder(customerId: number) {
-    const customer = this.customerService.findById(customerId);
+//async  createOrder(customerId: number) {
+//    const customer = await this.customerService.findById(customerId);
+//
+//    if (!customer) {
+//      throw new NotFoundException('Customer not found');
+//    }
+//    
+//	const order = {
+//
+//  customerId: customer.id,
+//
+//  status: 'Created',
+//
+//};
+//	return this.orderRepository.create(order);	
+//}
+  async create(dto: CreateOrderDto) {
 
+    const customer =
+      await this.customerService.findById(dto.customerId);
+    
     if (!customer) {
       throw new NotFoundException('Customer not found');
     }
     
-	const order = {
-
-  customerId: customer.id,
-
-  status: 'Created',
-
-};
-	return this.orderRepository.create(order);	
-}
-  create(createOrderDto: CreateOrderDto) {
-    return 'This action adds a new order';
+    return this.orderRepository.create({
+      customerId: dto.customerId,
+      description: dto.description,
+      status: 'Created',
+    });
+    
   }
 
   findAll() {

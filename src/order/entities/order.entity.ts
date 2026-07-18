@@ -3,4 +3,5 @@ export class Order extends BaseEntity {
   customerId!: number;
   customerName!: string;
   status!: string;
+  description!:string;
 }

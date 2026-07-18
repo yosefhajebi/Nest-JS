@@ -1,9 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCustomerDto } from './dto/create-customer.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
+import { CustomerRepository } from './customer.repository';
 
 @Injectable()
 export class CustomerService {
+	constructor(
+  private readonly customerRepository: CustomerRepository,
+) {}
   create(createCustomerDto: CreateCustomerDto) {
     return 'This action adds a new customer';
   }
@@ -19,8 +23,8 @@ export class CustomerService {
   //findOne(id: number) {
   //  return `This action returns a #${id} customer`;
   //}
-  findById(id: number) {
-    return this.customers.find(c => c.id === id);
+  async findById(id: number) {
+   return await this.customerRepository.findById(id);
   }
   update(id: number, updateCustomerDto: UpdateCustomerDto) {
     return `This action updates a #${id} customer`;
