@@ -10,7 +10,9 @@ generator client {
 datasource db {
   provider = "sqlite"
 }
-
+///////////////////////
+///      Customer
+///////////////////////
 model Customer {
 
   id Int @id @default(autoincrement())
@@ -23,7 +25,9 @@ model Customer {
 
 }
 
-
+///////////////////////
+///      Order
+///////////////////////
 
 model Order {
 
